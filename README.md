@@ -14,5 +14,4 @@ Game Camp is maintained by
 
 # About Learn Leap Fly
 * Website: http://learnleapfly.org
-* Twitter: [http://twitter.com/learnleapfly @LearnLeapFly]
-* Facebook: [htps://facebook.com/learnleapfly LearnLeapFly]
+* Twitter: (@LearnLeapFly)[[http://twitter.com/learnleapfly]
