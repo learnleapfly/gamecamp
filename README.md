@@ -3,12 +3,12 @@ Game Camp is an open-source project aimed at helping anyone learn to make mobile
 
 # Contacting Us
 Game Camp is maintained by 
-* Kjell Wooding: kjell at learnleapfly.org
-* Amy Wooding: amy at learnleapfly.org
+* Kjell Wooding: kjell@learnleapfly.org
+* Amy Wooding: amy@learnleapfly.org
 
 
 * Wiki: https://github.com/learnleapfly/gamecamp/wiki
-* Chat: https://lff-game-camp.slack.com (contact amy at learnleapfly.org for access!)
+* Chat: https://lff-game-camp.slack.com (contact Amy for access!)
 
 
 
