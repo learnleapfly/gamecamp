@@ -7,10 +7,12 @@ Game Camp is maintained by
 * Amy Wooding: amy@learnleapfly.org
 
 
-Wiki: https://github.com/learnleapfly/gamecamp/wiki
-Chat: https://lff-game-camp.slack.com (contact amy@learnleapfly.org for access!)
+* Wiki: https://github.com/learnleapfly/gamecamp/wiki
+* Chat: https://lff-game-camp.slack.com (contact amy@learnleapfly.org for access!)
 
 
 
 # About Learn Leap Fly
 Website: http://learnleapfly.org
+Twitter: [http://twitter.com/learnleapfly @LearnLeapFly]
+Facebook: [htps://facebook.com/learnleapfly LearnLeapFly]
