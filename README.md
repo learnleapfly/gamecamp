@@ -11,9 +11,9 @@ Game Camp is maintained by
 * Kjell Wooding: kjell@learnleapfly.org
 * Amy Wooding: amy@learnleapfly.org
 
-Documentation and Chat:
+Places to Start:
 * Wiki: https://github.com/learnleapfly/gamecamp/wiki
-* Chat: https://llf-game-camp.slack.com (contact Amy for access!)
+* Chat: #gamecamp on https://pyconsprints.slack.com. Visit https://pyconsprints.herokuapp.com to request an account
 
 
 
