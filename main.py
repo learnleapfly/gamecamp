@@ -5,7 +5,7 @@ from kivy import properties
 from kivy import graphics
 from kivy.uix import label
 from kivy.uix.floatlayout import FloatLayout
-
+import math
 
 MapCoords = collections.namedtuple('MapCoords', ['row', 'col'])
 
@@ -22,42 +22,45 @@ class StrategyGame(FloatLayout):
         for region in xrange(0, number_of_regions):
             row = region / self.map_cols
             col = region % self.map_cols
-            self.main_map.add_widget(HexMapCell(row=row, col=col))
+            self.main_map.add_widget(self.pick_hex_cell(row=row, col=col))
+
+
+    def pick_hex_cell(self, row, col):
+        row_mod = row % 6
+        if col % 2 == 0:
+            if row_mod == 0:
+                return BU()
+            elif row_mod in (1, 2):
+                return L()
+            elif row_mod == 3:
+                return TD()
+            elif row_mod in (4, 5):
+                return R()
+        else:
+            if row_mod == 0:
+                return TD()
+            elif row_mod in (1, 2):
+                return R()
+            elif row_mod == 3:
+                return BU()
+            elif row_mod in (4, 5):
+                return L()
 
 
 class HexMapCell(label.Label):
     def __init__(self, row=0, col=0, **kwargs):
         self.region_in_map = MapCoords(row, col)
         super(HexMapCell, self).__init__(**kwargs)
-        self.draw_hex_edge()
 
-    def draw_hex_edge(self):
-        edge = ''
-        if self.region_in_map.col % 2 == 0:
-            row_mod = self.region_in_map.row % 6
-            if row_mod == 0:
-                edge = 'BU'
-                with self.canvas:
-                    graphics.Color(1, 1, 1, 1)
-                    graphics.Line(points=[self.x, self.y, self.width + self.x, self.height + self.y])
-            elif row_mod in (1, 2):
-                edge = 'L '
-            elif row_mod == 3:
-                edge = 'TD'
-            elif row_mod in (4, 5):
-                edge = ' R'
-        else:
-            row_mod = self.region_in_map.row % 6
-            if row_mod == 0:
-                edge = 'TD'
-            elif row_mod in (1, 2):
-                edge = ' R'
-            elif row_mod == 3:
-                edge = 'BU'
-            elif row_mod in (4, 5):
-                edge = 'L '
+class BU(HexMapCell):
+    pass
+class TD(HexMapCell):
+    pass
+class L(HexMapCell):
+    pass
+class R(HexMapCell):
+    pass
 
-        self.text = edge
 
 class StrategyGameApp(App):
     def build(self):
