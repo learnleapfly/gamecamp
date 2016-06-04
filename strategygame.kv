@@ -2,10 +2,12 @@
 #:include debug.kv
 
 <StrategyGame>:
+    main_map: _main_map
     BoxLayout:
         orientation: 'horizontal'
-        DebugLabel:
-            text: 'Main map'
+        GridLayout:
+            id: _main_map
+            cols: 10
             size_hint: .75, 1
         BoxLayout:
             orientation: 'vertical'
