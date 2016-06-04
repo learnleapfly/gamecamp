@@ -22,3 +22,32 @@
             DebugLabel:
                 text: 'mini-map'
                 size_hint: 1, .33
+
+<BU>:
+    canvas:
+        Color:
+            rgba: (1,1,1,1)
+        Line:
+            points: (self.x, self.y, self.right, self.top)
+            width: 2
+<TD>:
+    canvas:
+        Color:
+            rgba: (1,1,1,1)
+        Line:
+            points: (self.x, self.top, self.right, self.y)
+            width: 2
+<L>:
+    canvas:
+        Color:
+            rgba: (1,1,1,1)
+        Line:
+            points: (self.x, self.y, self.x, self.top)
+            width: 2
+<R>:
+    canvas:
+        Color:
+            rgba: (1,1,1,1)
+        Line:
+            points: (self.right, self.y, self.right, self.top)
+            width: 2
