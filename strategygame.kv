@@ -1,10 +1,10 @@
-
+#:import math math
 #:include debug.kv
 
 <StrategyGame>:
     id: _game
     main_map: _main_map
-    map_rows: 10
+    map_rows: 30
     map_cols: 10
     BoxLayout:
         orientation: 'horizontal'
@@ -22,6 +22,7 @@
             DebugLabel:
                 text: 'mini-map'
                 size_hint: 1, .33
+
 
 <BU>:
     canvas:
@@ -51,3 +52,7 @@
         Line:
             points: (self.right, self.y, self.right, self.top)
             width: 2
+
+<HexMapCell>:
+    size_hint: 1, None
+    height: self.width / math.sqrt(3)
