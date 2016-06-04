@@ -48,6 +48,7 @@ class StrategyGame(FloatLayout):
 
 
 class HexMapCell(label.Label):
+
     def __init__(self, row=0, col=0, **kwargs):
         self.region_in_map = MapCoords(row, col)
         super(HexMapCell, self).__init__(**kwargs)
