@@ -1,0 +1,18 @@
+
+#:include debug.kv
+
+<StrategyGame>:
+    BoxLayout:
+        orientation: 'horizontal'
+        DebugLabel:
+            text: 'Main map'
+            size_hint: .75, 1
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: .25, 1
+            DebugLabel:
+                text: 'status'
+                size_hint: 1, .66
+            DebugLabel:
+                text: 'mini-map'
+                size_hint: 1, .33

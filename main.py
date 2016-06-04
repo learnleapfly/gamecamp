@@ -1,12 +1,14 @@
 from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
 
-class HelloWorld(FloatLayout):
+
+class StrategyGame(FloatLayout):
     pass
 
-class HelloWorldApp(App):
+
+class StrategyGameApp(App):
     def build(self):
-        return HelloWorld()
+        return StrategyGame()
 
 if __name__ == '__main__':
-    HelloWorldApp().run()
+    StrategyGameApp().run()
