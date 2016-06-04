@@ -2,7 +2,7 @@ import collections
 
 from kivy.app import App
 from kivy import properties
-from kivy.uix import button
+from kivy.uix import button, label
 from kivy.uix.floatlayout import FloatLayout
 
 
@@ -21,15 +21,39 @@ class StrategyGame(FloatLayout):
         for region in xrange(0, number_of_regions):
             row = region / self.map_cols
             col = region % self.map_cols
-            self.main_map.add_widget(MapRegion(row=row, col=col))
+            self.main_map.add_widget(HexMapMiniRegion(row=row, col=col))
 
 
-class MapRegion(button.Button):
+class HexMapMiniRegion(label.Label):
     def __init__(self, row=0, col=0, **kwargs):
         self.region_in_map = MapCoords(row, col)
-        super(MapRegion, self).__init__(**kwargs)
-        self.text = '({}, {})'.format(self.region_in_map.row, self.region_in_map.col)
+        super(HexMapMiniRegion, self).__init__(**kwargs)
+        self.draw_hex_edge()
 
+    def draw_hex_edge(self):
+        edge = ''
+        if self.region_in_map.col % 2 == 0:
+            row_mod = self.region_in_map.row % 6
+            if row_mod == 0:
+                edge = ' / '
+            elif row_mod in (1, 2):
+                edge = ' | '
+            elif row_mod == 3:
+                edge = ' \ '
+            elif row_mod in (4, 5):
+                edge = ' | '
+        else:
+            row_mod = self.region_in_map.row % 6
+            if row_mod == 0:
+                edge = ' \ '
+            elif row_mod in (1, 2):
+                edge = ' | '
+            elif row_mod == 3:
+                edge = ' / '
+            elif row_mod in (4, 5):
+                edge = ' | '
+
+        self.text = edge
 
 class StrategyGameApp(App):
     def build(self):
