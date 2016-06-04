@@ -2,6 +2,7 @@ import collections
 
 from kivy.app import App
 from kivy import properties
+from kivy import graphics
 from kivy.uix import label
 from kivy.uix.floatlayout import FloatLayout
 
@@ -21,13 +22,13 @@ class StrategyGame(FloatLayout):
         for region in xrange(0, number_of_regions):
             row = region / self.map_cols
             col = region % self.map_cols
-            self.main_map.add_widget(HexMapMiniRegion(row=row, col=col))
+            self.main_map.add_widget(HexMapCell(row=row, col=col))
 
 
-class HexMapMiniRegion(label.Label):
+class HexMapCell(label.Label):
     def __init__(self, row=0, col=0, **kwargs):
         self.region_in_map = MapCoords(row, col)
-        super(HexMapMiniRegion, self).__init__(**kwargs)
+        super(HexMapCell, self).__init__(**kwargs)
         self.draw_hex_edge()
 
     def draw_hex_edge(self):
@@ -36,6 +37,9 @@ class HexMapMiniRegion(label.Label):
             row_mod = self.region_in_map.row % 6
             if row_mod == 0:
                 edge = 'BU'
+                with self.canvas:
+                    graphics.Color(1, 1, 1, 1)
+                    graphics.Line(points=[self.x, self.y, self.width + self.x, self.height + self.y])
             elif row_mod in (1, 2):
                 edge = 'L '
             elif row_mod == 3:
