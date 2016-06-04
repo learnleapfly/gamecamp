@@ -1,7 +1,12 @@
+import collections
+
 from kivy.app import App
 from kivy import properties
 from kivy.uix import button
 from kivy.uix.floatlayout import FloatLayout
+
+
+MapCoords = collections.namedtuple('MapCoords', ['row', 'col'])
 
 
 class StrategyGame(FloatLayout):
@@ -16,7 +21,14 @@ class StrategyGame(FloatLayout):
         for region in xrange(0, number_of_regions):
             row = region / self.map_cols
             col = region % self.map_cols
-            self.main_map.add_widget(button.Button(text='({}, {})'.format(row, col)))
+            self.main_map.add_widget(MapRegion(row=row, col=col))
+
+
+class MapRegion(button.Button):
+    def __init__(self, row=0, col=0, **kwargs):
+        self.region_in_map = MapCoords(row, col)
+        super(MapRegion, self).__init__(**kwargs)
+        self.text = '({}, {})'.format(self.region_in_map.row, self.region_in_map.col)
 
 
 class StrategyGameApp(App):
