@@ -2,7 +2,7 @@ import collections
 
 from kivy.app import App
 from kivy import properties
-from kivy.uix import button, label
+from kivy.uix import label
 from kivy.uix.floatlayout import FloatLayout
 
 
@@ -35,23 +35,23 @@ class HexMapMiniRegion(label.Label):
         if self.region_in_map.col % 2 == 0:
             row_mod = self.region_in_map.row % 6
             if row_mod == 0:
-                edge = ' / '
+                edge = 'BU'
             elif row_mod in (1, 2):
-                edge = ' | '
+                edge = 'L '
             elif row_mod == 3:
-                edge = ' \ '
+                edge = 'TD'
             elif row_mod in (4, 5):
-                edge = ' | '
+                edge = ' R'
         else:
             row_mod = self.region_in_map.row % 6
             if row_mod == 0:
-                edge = ' \ '
+                edge = 'TD'
             elif row_mod in (1, 2):
-                edge = ' | '
+                edge = ' R'
             elif row_mod == 3:
-                edge = ' / '
+                edge = 'BU'
             elif row_mod in (4, 5):
-                edge = ' | '
+                edge = 'L '
 
         self.text = edge
 
