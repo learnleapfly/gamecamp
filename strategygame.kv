@@ -1,4 +1,5 @@
 #:import math math
+#:include debug.kv
 
 <StrategyGame>:
     id: _game
@@ -30,35 +31,15 @@
                 size_hint: 1, .33
                 background_color: .75, .71, .99, 1
 
-
-<BU>:
-    canvas:
+<Hex@Label>:
+    pos_hint: {'center_x':.5, 'center_y':.5}
+    canvas.after:
         Color:
-            rgba: (1,1,1,1)
-        Line:
-            points: (self.x, self.y, self.right, self.top)
-            width: 2
-<TD>:
-    canvas:
-        Color:
-            rgba: (1,1,1,1)
-        Line:
-            points: (self.x, self.top, self.right, self.y)
-            width: 2
-<L>:
-    canvas:
-        Color:
-            rgba: (1,1,1,1)
-        Line:
-            points: (self.x, self.y, self.x, self.top)
-            width: 2
-<R>:
-    canvas:
-        Color:
-            rgba: (1,1,1,1)
-        Line:
-            points: (self.right, self.y, self.right, self.top)
-            width: 2
+            rgba: 1,1,1,1
+        Ellipse:
+            segments: 6
+            pos: self.pos
+            size: min(self.width, self.height), min(self.width, self.height)
 
 <HexMapCell>:
     size_hint: 1, None

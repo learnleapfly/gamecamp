@@ -1,9 +1,11 @@
 import collections
 import random
-
+import math
 from kivy import app, properties
 from kivy.uix import button, label
 from kivy.uix.floatlayout import FloatLayout
+from kivy.graphics import Color, Ellipse, Line
+from kivy.logger import Logger
 
 MapCoords = collections.namedtuple('MapCoords', ['row', 'col'])
 
@@ -26,9 +28,15 @@ class StrategyGame(FloatLayout):
             self.main_map.add_widget(hex_cell)
 
             # Add overlay conditionally.
-            if (row % 6 == 2 and col % 2 == 0) or (row % 6 == 5 and col % 2 == 1):
+            if (row % 6 == 1 and col % 2 == 1) or (row % 6 == 4 and col % 2 == 0):
                 print('({}, {})'.format(row, col))
-                self.add_widget(HexMapControlCell(hex_bind=hex_cell))
+                #radius = math.sqrt(hex_cell.width**2 + hex_cell.height**2)
+                radius = 2*hex_cell.height
+                with hex_cell.canvas.after:
+                    Color(1,0,1,1)
+                    hex_cell.ell = Line(circle=(hex_cell.x, hex_cell.y,radius, 0, 360, 6), width=2)
+                hex_cell.bind(pos=hex_cell.update_pos, size=hex_cell.update_pos)
+
 
     @staticmethod
     def pick_hex_cell(row, col):
@@ -53,10 +61,18 @@ class StrategyGame(FloatLayout):
                 return L()
 
 
+
 class HexMapCell(label.Label):
     def __init__(self, row=0, col=0, **kwargs):
         super(HexMapCell, self).__init__(**kwargs)
         self.coords = MapCoords(row, col)
+
+    def update_pos(self, instance, value):
+        Logger.info("StratGame: {}".format(instance))
+        #radius = math.sqrt(self.width**2 + self.height**2)
+        radius = 2*self.height
+        self.ell.circle = (self.x, self.y, radius, 0, 360, 6)
+
 
 
 class BU(HexMapCell):
@@ -73,6 +89,7 @@ class L(HexMapCell):
 
 class R(HexMapCell):
     pass
+
 
 
 class HexMapControlCell(button.Button):
