@@ -1,5 +1,4 @@
 #:import math math
-#:include debug.kv
 
 <StrategyGame>:
     id: _game
@@ -16,12 +15,20 @@
         BoxLayout:
             orientation: 'vertical'
             size_hint: .25, 1
-            DebugLabel:
+            Label:
+                id: _stats
                 text: 'status'
                 size_hint: 1, .66
-            DebugLabel:
+                canvas.before:
+                    Color:
+                        rgba: .49, .49, .81, 1
+                    Rectangle:
+                        pos: _stats.pos
+                        size: _stats.size
+            Button:
                 text: 'mini-map'
                 size_hint: 1, .33
+                background_color: .75, .71, .99, 1
 
 
 <BU>:
