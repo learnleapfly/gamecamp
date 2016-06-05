@@ -1,0 +1,15 @@
+#:import random random
+    
+<Widget>:
+    canvas.after:
+        Color:
+            rgba: 1,1,1,.5
+        Line:
+            rectangle: self.x, self.y, self.width, self.height
+            width: 2
+                
+<DebugLabel@Button>:
+    size: self.parent.size
+    pos: self.parent.pos
+    background_color: random.random(), random.random(), random.random(), 0.6
+    text: 'debuglabel'

@@ -1,0 +1,46 @@
+#:import math math
+##:include debug.kv
+
+<StrategyGame>:
+    id: _game
+    main_map: _main_map
+    map_rows: 30
+    map_cols: 10
+    BoxLayout:
+        orientation: 'horizontal'
+        GridLayout:
+            id: _main_map
+            game: _game
+            cols: root.map_cols
+            size_hint: .75, 1
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: .25, 1
+            Label:
+                id: _stats
+                text: 'status'
+                size_hint: 1, .66
+                canvas.before:
+                    Color:
+                        rgba: .49, .49, .81, 1
+                    Rectangle:
+                        pos: _stats.pos
+                        size: _stats.size
+            Button:
+                text: 'mini-map'
+                size_hint: 1, .33
+                background_color: .75, .71, .99, 1
+
+<Hex@Label>:
+    pos_hint: {'center_x':.5, 'center_y':.5}
+    canvas.after:
+        Color:
+            rgba: 1,1,1,1
+        Ellipse:
+            segments: 6
+            pos: self.pos
+            size: min(self.width, self.height), min(self.width, self.height)
+
+<HexMapCell>:
+    size_hint: 1, None
+    height: self.width / math.sqrt(3)
