@@ -26,8 +26,8 @@ class StrategyGame(FloatLayout):
             self.main_map.add_widget(hex_cell)
 
             # Add overlay conditionally.
-            # if (row % 6 == 2 and col % 2 == 0) or (row % 6 == 5 and col % 2 == 1):
-            if row == 2 and col == 0:
+            if (row % 6 == 2 and col % 2 == 0) or (row % 6 == 5 and col % 2 == 1):
+                print('({}, {})'.format(row, col))
                 self.add_widget(HexMapControlCell(hex_bind=hex_cell))
 
     @staticmethod
@@ -58,12 +58,19 @@ class HexMapCell(label.Label):
         super(HexMapCell, self).__init__(**kwargs)
         self.coords = MapCoords(row, col)
 
+
 class BU(HexMapCell):
     pass
+
+
 class TD(HexMapCell):
     pass
+
+
 class L(HexMapCell):
     pass
+
+
 class R(HexMapCell):
     pass
 
@@ -72,14 +79,11 @@ class HexMapControlCell(button.Button):
     def __init__(self, hex_bind=None, **kwargs):
         super(HexMapControlCell, self).__init__(**kwargs)
         self.hex_bind = hex_bind
-        # self.background_color = random.random(), random.random(), random.random(), 0.1
-        # self.background_color = random.random(), random.random(), random.random(), 0.25
         self.background_color = random.random(), random.random(), random.random(), 1
         self.bind(pos=self.reposition_control_cell, size=self.resize_control_cell)
+        self.text = '({}, {})'.format(self.hex_bind.coords.row, self.hex_bind.coords.col)
 
     def reposition_control_cell(self, obj, value):
-        # import pdb
-        # pdb.set_trace()
         self.pos = self.hex_bind.pos
 
     def resize_control_cell(self, obj, value):
